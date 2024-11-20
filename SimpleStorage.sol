@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.18;
+pragma solidity 0.8.24;
 
 // source with more basic things https://github.com/Cyfrin/remix-storage-factory-cu/blob/main/SimpleStorage.sol
 contract SimpleStorage {
@@ -22,7 +22,7 @@ contract SimpleStorage {
     // ie: chelsea -> 232
     mapping(string => uint256) public nameToFavoriteNumber;
 
-    function store(uint256 _favoriteNumber) public {
+    function store(uint256 _favoriteNumber) public virtual {
         myFavoriteNumber = _favoriteNumber;
     }
 
