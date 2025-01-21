@@ -6,12 +6,12 @@
 
 pragma solidity 0.8.24;
 
-import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
+import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol"; // interfaces are for interact with contract without actual function
 
 contract FundMe {
 
-    // uint256 public myValue = 1;
-    uint256 public minimumUsd = 1e18;
+    // uint256 public myValue = 1; // this is used to explain revert
+    uint256 public minimumUsd = 5e18;
 
     function fund() public payable{
         // allow to send $
@@ -22,8 +22,8 @@ contract FundMe {
         // myValue = myValue +2; 
 
         // how to send eth to this contract?
-        // require(msg.value >= minimumUsd, "didn't send enough eth"); // 1e18 = 1 eth = 1 * 10 ** 18 = valuew in wei
-        require(getConversionRate(msg.value) >= minimumUsd, "didn't send enough eth");
+        // require(msg.value >= minimumUsd, "didn't send enough eth"); // 1e18 = 1 eth = 1 * 10 ** 18 = valuew in wei (** means raised)
+        require(getConversionRate(msg.value) >= minimumUsd, "didn't send enough eth"); // require is kind of trycatch
 
         // https breaks conscensus
         // with chainlink networks because of oracle problem
@@ -43,7 +43,7 @@ contract FundMe {
         (, int256 answer, , , )  = priceFeed.latestRoundData(); // int because values can be negative
         // uint80 roundID, ,uint startedAt ,uint timeStamp ,uint80 answeredInRound
 
-        return uint256(answer * 1e10); // decimal places from eth to usd
+        return uint256(answer * 1e10); // decimal places from eth to usd, and also from int to uint
     }
 
     function getConversionRate(uint256 ethAmount) public view returns (uint256) {
