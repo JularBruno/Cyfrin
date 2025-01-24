@@ -6,9 +6,13 @@
 
 pragma solidity ^0.8.24;
 
-import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol"; // interfaces are for interact with ABI contract without actual functions in it
+// import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol"; // interfaces are for interact with ABI contract without actual functions in it
 
 import {PriceConverter} from "./PriceConverter.sol";
+
+
+error NotOwner();
+
 
 contract FundMe {
 
@@ -90,7 +94,22 @@ contract FundMe {
 
     // modifier creates ability to create keyword to put right in any function declaration
     modifier onlyOwner() {
-        require(msg.sender == i_owner, "Must be owner!");
+        // require(msg.sender == i_owner, "Must be owner!");
+        if (msg.sender != i_owner) { // GAS eficient, both might appear check for solidity new thigns if require or sth
+            revert NotOwner();
+        }
         _;
+    }
+
+
+    // what happens if someone sends money without calling fund()
+    // receive () or fallback()
+
+    receive() external payable {
+        fund();
+    }
+    
+    fallback() external payable {
+        fund();
     }
 }
