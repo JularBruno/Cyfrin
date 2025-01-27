@@ -1,0 +1,16 @@
+PRIVATE_KEY=# private key from anvil
+RPC_URL=http://127.0.0.1:8545
+SEPOLIA_RPC_URL=https://eth-sepolia.g.alchemy.com/v2/9Yi86zPO8rSrihsldwaChOAm-MvfKaPf
+# RUN source .env
+# echo $PRIVATE_KEY
+# worst approach based on security
+# for real money: use --interactive or a keystore file
+# Important how to https://github.com/Cyfrin/foundry-full-course-cu/discussions/5
+
+
+# # Never Use A Env File
+# cast wallet import defaultkey --interactive
+# cast wallet list
+cast wallet import metamask --interactive
+
+# can also pass a --password-file

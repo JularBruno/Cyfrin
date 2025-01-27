@@ -11,4 +11,4 @@ out/
 docs/
 
 # Dotenv file
-.env
+# .env # im pushing this because there is some docs in there
