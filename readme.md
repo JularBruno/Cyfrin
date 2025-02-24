@@ -117,10 +117,11 @@ forge create src/SimpleStorage.sol:SimpleStorage --rpc_url <RPC_URL> --private_k
 
 #### Tx Types, Why L2, Alchemy
 
-*Types* seen on broadcast folder transactions, differ on the functionality of the contract. There are many and change between zksync and anvil deploys.
+*Types* seen on broadcast folder transactions (0x0 0x2), differ on the functionality of the contract. There are many and change between zksync and anvil deploys.
 
 Most projects today prefer deploying to *Layer 2* solutions rather than directly to Ethereum due to the high costs associated with deployments
 - gasUsed: allows us to estimate the deployment cost on the Ethereum mainnet
 - Deploying to ZKsync Sepolia is similar to deploying to a ZKsync local node
 
 Think of *Alchemy* as the AWS of Web3.
+- The platform's primary component is the _Supernode_, a proprietary blockchain engine that works as a load balancer on top of your node.
